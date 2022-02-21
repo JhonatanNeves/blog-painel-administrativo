@@ -1,4 +1,4 @@
-const Sequelize = require("sequilize");
+const Sequelize = require("sequelize");
 const connection = require("../database/database");
 
 const Category = connection.define('categories', {
@@ -9,6 +9,8 @@ const Category = connection.define('categories', {
         type: Sequelize.STRING,
         allowNull: false
     }
-})
+});
+
+/*Category.sync({force: true}); */ /* APÓS CRIAR A TABELA , IMPORTANTE DELETAR A LINHA DE CODIGO*/
 
 module.exports = Category;
