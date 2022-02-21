@@ -15,7 +15,7 @@ router.post("/categories/save", (req, res) => {
             title:title,
             slug: slugify(title)
         }).then(()=> {
-            res.redirect("/");
+            res.redirect("/admin/categories");
         })
     }else{
         res.redirect("/admin/categories/new");
@@ -27,6 +27,62 @@ router.get("/admin/categories", (req, res) => {
     Category.findAll().then(categories => {
         res.render("admin/categories/index", {categories: categories});
     });
+});
+
+router.post("/categories/delete", (req, res) => {
+    var id = req.body.id;
+    if(id != undefined){
+        
+        if(!isNaN(id)){ /*serve para verificar se o id é null . ENT */
+            
+            Category.destroy({
+                where:{
+                    id:id
+                }
+            }).then(() => {
+                res.redirect("/admin/categories");
+            });
+
+        }else{ /* se nao for número redireciona*/
+            res.redirect("/admin/categories");
+        }
+    }else{ /* se for null vai redirecionar*/
+        res.redirect("/admin/categories");
+    }
+});
+
+router.get("/admin/categories/edit/:id", (req, res) => {
+    var id = req.params.id;
+
+    if(isNaN(id)){ /* Verificação de id invalido*/
+        res.redirect("/admin/categories");
+    }
+
+    Category.findByPk(id).then(category => {
+        if(category != undefined){
+
+            res.render("admin/categories/edit", {category: category});
+
+        }else{
+            res.redirect("/admin/categories");
+        }
+    }).catch(error => {
+        res.redirect("/admin/categories");
+    }) /*tag usada pra busca de categoria pelo ID */
+});
+
+router.post("/categories/update", (req, res) => {
+    var id = req.body.id;
+    var title = req.body.title;
+
+    Category.update({title: title, slug: slugify(title) },{
+        where: {
+            id: id
+        }
+    }).then(() => {
+        res.redirect("/admin/categories");
+    })
+
 });
 
 module.exports = router;

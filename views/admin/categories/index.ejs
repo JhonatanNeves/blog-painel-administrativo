@@ -1,3 +1,4 @@
+<title>Categorias</title>
 <%- include ('../../partials/header.ejs') %>
 <%- include ('../../partials/navbar.ejs') %>
 <div class="container">
@@ -21,8 +22,12 @@
                     <th> <%= category.title %> </th>
                     <th> <%= category.slug %> </th>
                     <th>
-                        <button class="btn btn-dark">Editar</button>
-                        <button class="btn btn-danger">Deletar</button>
+                        <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-dark">Editar</a>
+                        <form method="POST" action="/categories/delete" style="display: inline;" onsubmit="confimDelete(event, this)">
+                            <input type="hidden" name="id" value="<%= category.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                        
                     </th>
                 </tr>
                 <% }) %>
@@ -31,3 +36,12 @@
     <a class="btn btn-dark" href="/admin/categories/new">Criar nova categoria</a>
 </div>
 <%- include ('../../partials/footer.ejs') %>
+<script>
+    function confimDelete(event, form){
+        event.preventDefault();
+        var decision = confirm("Deseja DELETAR esta categoria?");
+        if(decision){
+            form.submit();
+        }
+    }
+</script>
