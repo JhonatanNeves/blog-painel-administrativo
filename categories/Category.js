@@ -11,6 +11,6 @@ const Category = connection.define('categories', {
     }
 });
 
-/*Category.sync({force: true}); */ /* APÓS CRIAR A TABELA , IMPORTANTE DELETAR A LINHA DE CODIGO*/
+/*Category.sync({force: true});*/  /* APÓS CRIAR A TABELA , IMPORTANTE DELETAR A LINHA DE CODIGO*/
 
 module.exports = Category;

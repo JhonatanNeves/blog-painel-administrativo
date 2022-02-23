@@ -25,7 +25,7 @@ router.post("/articles/save", (req, res) => {
     var category = req.body.category;
 
     Article.create({
-        tilte: title,
+        title: title,
         slug: slugify(title),
         body: body,
         categoryId: category
