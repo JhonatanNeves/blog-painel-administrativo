@@ -52,7 +52,7 @@ router.post("/articles/delete", (req, res) => {
             res.redirect("/admin/articles");
         }
     }else{ /* se for null vai redirecionar*/
-        res.redirect("/admin/categories");
+        res.redirect("/admin/articles");
     }
 });
 
