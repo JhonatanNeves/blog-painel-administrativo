@@ -3,10 +3,20 @@
         Guia press
     </a>
 <!-- CRIAÇÃO DE MENU EM UMA NAVE BAR, INFORMAR O CAMINHO-->
-    <ul class="navbar-nav mr-auto"> <!--ul class="mr-auto" serve p/ adicionar uma margin total a direita-->
+    <ul class="navbar-nav mr-auto"> <!-- <ul class="mr-auto"> Serve p/ adicionar uma margin total a direita-->
+        
         <li class="nav-item">
             <a  class="nav-link" href="/">Home</a>
+        </li>
         
+        <% categories.forEach(category => { %>
+            <li class="nav-item">
+                <a  class="nav-link" href="/category/<%= category.slug %>"><%= category.title %></a>
+            </li>
+        <% }) %>
     </ul>
-
 </nav>
+        
+
+        
+        
