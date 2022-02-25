@@ -102,7 +102,10 @@ router.get("/articles/page/:num", (req, res) => {  //LOGICA DE PAGINAÇÃO
 
     Article.findAndCountAll({
         limit: 4,
-        offset: offset
+        offset: offset,
+        order: [
+            ['id', 'DESC']
+        ]
     }).then(articles => {
 
         var next;
@@ -113,11 +116,14 @@ router.get("/articles/page/:num", (req, res) => {  //LOGICA DE PAGINAÇÃO
         }
 
         var result= {
+            page: parseInt(page),
             next: next,
             articles: articles,
         }
 
-        res.json(result);
+        Category.findAll().then(categories => {
+            res.render("admin/articles/page", {result: result, categories: categories})
+        })
     
     })
 
