@@ -8,13 +8,18 @@ const usersController = require("./users/UsersController");
 const User = require("./users/User");
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
-
+const session = require("express-session");
 
 
 // View engine
 app.set('view engine', 'ejs');
 
+// Session
 
+app.use(session({
+    secret:"dsfhs5g84f5664asets56a187a ", cookie: { maxAge: 30000000 },resave: true,
+    saveUninitialized: true
+}));
 
 //Static
 app.use(express.static('public'));
@@ -36,6 +41,7 @@ connection
 app.use("/", categoriesController);
 app.use("/", articlesController);
 app.use("/", usersController);
+
 
 
 

@@ -1,0 +1,21 @@
+<%- include ('../../partials/header.ejs') %>
+<%- include ('../../partials/navbar.ejs') %>
+
+<div class="container">
+    
+    <div class="card mt-4">
+        <div class="card-header">
+            <h2>Login Admin</h2>
+        </div>
+        <br>
+        <div class="card-body">
+            <form action="/authenticate" method="POST">
+            <input class="form-control mb-2" name="email" type="email" placeholder="email@exemplo.com">
+            <input class="form-control" name="password" type="password" placeholder="******">
+            <button type="submit" class="btn btn-dark btn-block mt-2">Logar</button>
+        </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('../../partials/footer.ejs') %>
